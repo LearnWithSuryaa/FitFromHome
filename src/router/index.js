@@ -6,10 +6,12 @@ import LandingPage from '../components/LandingPage.vue'
 import LoginPage from '../components/LoginPage.vue'
 import RegisterPage from '../components/RegisterPage.vue'
 import DashboardLayout from '../components/DashboardLayout.vue'
+import SKPage from '../components/SKPage.vue'
+import ContactPage from '../components/ContactPage.vue'
 
 // Impor komponen halaman dashboard
 import BmiCalculator from '../components/BmiCalculator.vue'
-import CalorieCalculatorPage from '../components/CalorieCalculator.vue' // <-- Ditambahkan
+import CalorieCalculatorPage from '../components/CalorieCalculator.vue'
 import ExercisePage from '../components/ExercisePage.vue'
 import ExerciseDetailPage from '../components/ExerciseDetailPage.vue'
 import FoodPage from '../components/FoodPage.vue'
@@ -21,6 +23,10 @@ const routes = [
   { path: '/', name: 'Landing', component: LandingPage },
   { path: '/login', name: 'Login', component: LoginPage },
   { path: '/register', name: 'Register', component: RegisterPage },
+  { path: '/privacy-policy', name: 'PrivacyPolicy', component: () => import("../components/LegalPage.vue.vue") }, 
+  { path: '/sk', name: 'SK', component: SKPage },
+  { path: '/contact', name: 'Contact', component: ContactPage },
+
   {
     path: '/dashboard',
     component: DashboardLayout,

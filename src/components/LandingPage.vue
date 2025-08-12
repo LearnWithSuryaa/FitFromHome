@@ -3,166 +3,7 @@
     class="landing-page font-sans antialiased text-gray-700 bg-white selection:bg-[rgba(0,119,137,0.2)] selection:text-[rgba(0,119,137,1)]"
   >
     <!-- 1. Navigation Bar (Hanya untuk bar atas) -->
-    <nav
-      class="fixed top-0 left-0 w-full py-4 lg:py-5 z-30 transition-all duration-300 ease-in-out" 
-      :class="{
-        'bg-white/95 backdrop-blur-lg shadow-md': isScrolled,
-        'bg-transparent': !isScrolled,
-      }"
-    >
-      <div class="container mx-auto px-5 lg:px-8 flex justify-between items-center">
-        <a
-          href="#"
-          @click.prevent="handleNavigation('/')"
-          class="text-2xl lg:text-3xl font-bold transition-colors duration-300"
-          :class="isScrolled ? 'text-[rgba(0,119,137,1)]' : 'text-white'"
-          >FitFromHome</a
-        >
-        <!-- Menu Desktop -->
-        <ul class="hidden lg:flex space-x-7 lg:space-x-10 items-center">
-          <li>
-            <a
-              href="#"
-              @click.prevent="handleNavigation('/dashboard')"
-              class="text-base font-medium hover:text-[rgba(0,119,137,1)] transition-colors duration-200"
-              :class="isScrolled ? 'text-gray-600' : 'text-gray-100'"
-              >Fitur</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              @click.prevent="handleNavigation('/dashboard/makanan')"
-              class="text-base font-medium hover:text-[rgba(0,119,137,1)] transition-colors duration-200"
-              :class="isScrolled ? 'text-gray-600' : 'text-gray-100'"
-              >Inspirasi</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              @click.prevent="handleNavigation('/dashboard/latihan')"
-              class="text-base font-medium hover:text-[rgba(0,119,137,1)] transition-colors duration-200"
-              :class="isScrolled ? 'text-gray-600' : 'text-gray-100'"
-              >Latihan</a
-            >
-          </li>
-          <li>
-            <button
-              @click="handleNavigation('/dashboard/bmi')"
-              class="bg-[rgba(0,119,137,1)] hover:bg-[rgba(0,90,105,1)] text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[rgba(0,119,137,0.5)] focus:ring-offset-2"
-            >
-              Mulai Gratis
-            </button>
-          </li>
-        </ul>
-        <!-- Tombol Hamburger Mobile -->
-        <button
-          @click="toggleMobileNav"
-          class="lg:hidden text-3xl p-1 -mr-1 rounded-md focus:outline-none focus:ring-2 focus:ring-inset"
-          :class="
-            isScrolled
-              ? 'text-[rgba(0,119,137,1)] focus:ring-[rgba(0,119,137,0.5)]'
-              : 'text-white focus:ring-white/70'
-          "
-        >
-          <span v-if="!isMobileNavOpen" class="block h-7 w-7"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              /></svg
-          ></span>
-          <span v-else class="block h-7 w-7"
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              /></svg
-          ></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Mobile Sidebar & Overlay (Dipindahkan keluar dari <nav> utama) -->
-    <transition
-      enter-active-class="transition-opacity ease-linear duration-300"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="transition-opacity ease-linear duration-300"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
-      <div v-show="isMobileNavOpen" class="fixed inset-0 bg-black/50 z-40 lg:hidden" @click="isMobileNavOpen = false"></div>
-    </transition>
-    
-    <transition
-      enter-active-class="transition ease-in-out duration-300 transform"
-      enter-from-class="-translate-x-full"
-      enter-to-class="translate-x-0"
-      leave-active-class="transition ease-in-out duration-300 transform"
-      leave-from-class="translate-x-0"
-      leave-to-class="-translate-x-full"
-    >
-      <aside v-show="isMobileNavOpen" class="fixed top-0 left-0 h-full w-64 bg-slate-800 text-gray-100 shadow-xl z-50 flex flex-col p-6 lg:hidden">
-        <!-- Header Sidebar Mobile -->
-        <div class="flex justify-between items-center mb-8">
-          <span class="text-xl font-bold text-white">Menu</span>
-          <button @click="isMobileNavOpen = false" class="text-gray-300 hover:text-white text-2xl">&times;</button>
-        </div>
-        
-        <!-- Menu Link Mobile -->
-        <ul class="flex flex-col space-y-3">
-          <li>
-            <a
-              href="#"
-              @click.prevent="handleMobileNav('/dashboard')"
-              class="block py-2.5 px-3 rounded-md hover:bg-slate-700 transition-colors duration-200 font-medium"
-              >Fitur</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              @click.prevent="handleMobileNav('/dashboard/makanan')"
-              class="block py-2.5 px-3 rounded-md hover:bg-slate-700 transition-colors duration-200 font-medium"
-              >Inspirasi</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              @click.prevent="handleMobileNav('/dashboard/latihan')"
-              class="block py-2.5 px-3 rounded-md hover:bg-slate-700 transition-colors duration-200 font-medium"
-              >Latihan</a
-            >
-          </li>
-          <li class="pt-4">
-            <button
-              @click="handleMobileNav('/dashboard/bmi')"
-              class="w-full bg-[rgba(0,119,137,1)] hover:bg-[rgba(0,90,105,1)] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 hover:shadow-md text-sm"
-            >
-              Mulai Gratis
-            </button>
-          </li>
-        </ul>
-      </aside>
-    </transition>
-
+    <NavbarLanding />
     <!-- 2. Hero Section -->
     <header
       id="hero-section"
@@ -190,7 +31,7 @@
           class="text-lg sm:text-xl lg:text-2xl mb-10 lg:mb-12 opacity-95 max-w-2xl mx-auto"
         >
           Temukan alat, inspirasi, dan dukungan yang Anda butuhkan untuk
-          mencapai tujuan kesehatan Anda bersama HealthHub.
+          mencapai tujuan kesehatan Anda bersama FitFromHome.
         </p>
         <button
           @click="handleNavigation('/dashboard')"
@@ -209,7 +50,7 @@
           data-animation="fade-in-up"
         >
           <h2 class="text-3xl lg:text-4xl font-bold text-gray-800">
-            Kenapa Memilih HealthHub?
+            Kenapa Memilih FitFromHome?
           </h2>
           <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
             Kami menyediakan fitur komprehensif untuk mendukung perjalanan
@@ -417,7 +258,7 @@
           data-animation="fade-in-up"
           data-delay="150"
         >
-          Bergabunglah dengan HealthHub hari ini dan dapatkan akses penuh ke
+          Bergabunglah dengan FitFromHome hari ini dan dapatkan akses penuh ke
           semua fitur, konten eksklusif, dan dukungan komunitas.
         </p>
         <div
@@ -439,76 +280,86 @@
     <footer class="bg-gray-900 text-gray-400 py-16 text-center sm:text-left">
       <div class="container mx-auto px-6 lg:px-8">
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <!-- Branding -->
           <div>
-            <h4 class="text-xl font-semibold text-white mb-4">HealthHub</h4>
+            <h4 class="text-xl font-semibold text-white mb-4">FitFromHome</h4>
             <p class="text-sm leading-relaxed">
               Membantu Anda mencapai versi terbaik diri Anda melalui kesehatan
               dan kebugaran yang berkelanjutan.
             </p>
           </div>
+
+          <!-- Navigasi -->
           <div>
             <h5 class="text-lg font-semibold text-white mb-4">Navigasi</h5>
             <ul class="space-y-2">
               <li>
                 <a
-                  href="#"
-                  @click.prevent="handleNavigation('/dashboard')"
-                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm"
-                  >Fitur</a
+                  @click.prevent="scrollToSection('#features-teaser')"
+                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm cursor-pointer"
                 >
+                  Fitur
+                </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  @click.prevent="handleNavigation('/dashboard/makanan')"
-                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm"
-                  >Inspirasi</a
+                  @click.prevent="scrollToSection('#food-section')"
+                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm cursor-pointer"
                 >
+                  Resep
+                </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  @click.prevent="handleNavigation('/dashboard/latihan')"
-                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm"
-                  >Latihan</a
+                  @click.prevent="scrollToSection('#exercise-section')"
+                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm cursor-pointer"
                 >
+                  Latihan
+                </a>
               </li>
               <li>
-                <button
-                  @click="handleNavigation('/dashboard/bmi')"
-                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm text-left w-full"
+                <a
+                  @click.prevent="handleNavigation('/dashboard/bmi')"
+                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm cursor-pointer"
                 >
                   Gabung
-                </button>
+                </a>
               </li>
             </ul>
           </div>
+
+          <!-- Legal -->
           <div>
             <h5 class="text-lg font-semibold text-white mb-4">Legal</h5>
             <ul class="space-y-2">
               <li>
                 <a
-                  href="#"
-                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm"
-                  >Kebijakan Privasi</a
+                  @click.prevent="handleNavigation('/privacy-policy')"
+                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm cursor-pointer"
                 >
+                  Kebijakan Privasi
+                </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm"
-                  >Syarat & Ketentuan</a
+                  @click.prevent="handleNavigation('/sk')"
+                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm cursor-pointer"
                 >
+                  Syarat & Ketentuan
+                </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm"
-                  >Hubungi Kami</a
+                  @click.prevent="handleNavigation('/contact')"
+                  class="hover:text-[rgba(0,119,137,1)] transition-colors text-sm cursor-pointer"
                 >
+                  Hubungi Kami
+                </a>
               </li>
             </ul>
           </div>
+
+          <!-- Sosial Media -->
           <div>
             <h5 class="text-lg font-semibold text-white mb-4">Ikuti Kami</h5>
             <div class="flex space-x-4 sm:justify-start justify-center">
@@ -516,26 +367,31 @@
                 href="#"
                 aria-label="Facebook"
                 class="text-xl hover:text-[rgba(0,119,137,1)] transition-colors"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
               <a
                 href="#"
                 aria-label="Instagram"
                 class="text-xl hover:text-[rgba(0,119,137,1)] transition-colors"
-                ><i class="fab fa-instagram"></i
-              ></a>
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
               <a
                 href="#"
                 aria-label="Twitter"
                 class="text-xl hover:text-[rgba(0,119,137,1)] transition-colors"
-                ><i class="fab fa-twitter"></i
-              ></a>
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
             </div>
           </div>
         </div>
+
+        <!-- Copyright -->
         <hr class="my-10 border-gray-700" />
         <p class="text-xs text-gray-500 text-center">
-          &copy; {{ new Date().getFullYear() }} HealthHub. Semua Hak Dilindungi.
+          &copy; {{ new Date().getFullYear() }} FitFromHome. Semua Hak Dilindungi.
         </p>
       </div>
     </footer>
@@ -546,6 +402,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 import { supabase } from "../supabaseClient"; // Pastikan path ini benar
+import NavbarLanding from "./NavbarLanding.vue";
 
 const router = useRouter();
 
@@ -555,22 +412,35 @@ let observer = null;
 
 // --- Logika Navigasi Cerdas ---
 async function handleNavigation(targetPath) {
+  // Daftar path yang tidak memerlukan login
+  const publicPaths = ["/privacy-policy", "/sk", "/contact"];
+
+  // Jika path termasuk public, langsung navigasi tanpa cek login
+  if (publicPaths.includes(targetPath)) {
+    return router.push(targetPath);
+  }
+
+  // Cek sesi login
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
   if (session) {
-    // Jika sudah login, langsung ke tujuan
+    // Sudah login → langsung navigasi
     router.push(targetPath);
   } else {
-    // Jika belum login, arahkan ke halaman login dengan query redirect
+    // Belum login → arahkan ke login dengan query redirect
     router.push({ path: "/login", query: { redirect: targetPath } });
   }
 }
 
-function handleMobileNav(targetPath) {
-  isMobileNavOpen.value = false;
-  handleNavigation(targetPath);
+
+// --- Logika Scroll Halaman ---
+function scrollToSection(sectionId) {
+  const section = document.querySelector(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
 }
 
 // --- Logika UI untuk Navbar Scroll ---

@@ -43,7 +43,7 @@
           <div v-for="item in favoriteExercises" :key="`ex-${item.id}`" class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl group relative">
             <router-link :to="{ name: 'ExerciseDetail', params: { id: item.id } }" class="h-full flex flex-col cursor-pointer">
               <div class="overflow-hidden h-48 sm:h-52">
-                <img :src="item.image_url || 'https://placehold.co/400x250/e2e8f0/94a3b8?text=HealthHub'" :alt="item.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img :src="item.image_url || 'https://placehold.co/400x250/e2e8f0/94a3b8?text=FitFromHome'" :alt="item.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
               </div>
               <div class="p-4 sm:p-5 flex flex-col flex-grow">
                 <div class="flex-grow">
@@ -70,7 +70,7 @@
            <div v-for="item in favoriteRecipes" :key="`rec-${item.id}`" class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl group relative">
             <router-link :to="{ name: 'FoodDetail', params: { id: item.id } }" class="h-full flex flex-col cursor-pointer">
               <div class="overflow-hidden h-48 sm:h-52">
-                <img :src="item.image_url || 'https://placehold.co/400x250/e2e8f0/94a3b8?text=HealthHub'" :alt="item.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img :src="item.image_url || 'https://placehold.co/400x250/e2e8f0/94a3b8?text=FitFromHome'" :alt="item.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
               </div>
               <div class="p-4 sm:p-5 flex flex-col flex-grow">
                 <div class="flex-grow">
