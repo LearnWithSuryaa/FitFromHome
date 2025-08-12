@@ -16,12 +16,21 @@
               v-show="!isSidebarCollapsed"
               class="flex items-center space-x-3"
             >
-              <i class="fas fa-dumbbell text-2xl text-cyan-400"></i>
+              <img
+                src="/logo-gym.png"
+                alt="FitFromHome Logo"
+                class="h-10 w-10 object-contain"
+              />
               <span class="text-xl font-bold text-white">FitFromHome</span>
             </div>
+
             <!-- Logo Ringkas (saat sidebar diciutkan) -->
             <div v-show="isSidebarCollapsed">
-              <i class="fas fa-dumbbell text-2xl text-white"></i>
+              <img
+                src="/logo-gym.png"
+                alt="Logo Icon"
+                class="h-8 w-8 object-contain"
+              />
             </div>
           </router-link>
         </div>
@@ -85,9 +94,13 @@
         <div
           class="flex items-center justify-between h-20 border-b border-slate-800 px-6"
         >
-           <router-link to="/dashboard" @click="isMobileSidebarOpen = false" class="flex items-center space-x-3">
-              <i class="fas fa-dumbbell text-2xl text-cyan-400"></i>
-              <span class="text-xl font-bold text-white">FitFromHome</span>
+          <router-link
+            to="/dashboard"
+            @click="isMobileSidebarOpen = false"
+            class="flex items-center space-x-3"
+          >
+            <i class="fas fa-dumbbell text-2xl text-cyan-400"></i>
+            <span class="text-xl font-bold text-white">FitFromHome</span>
           </router-link>
           <button
             @click="isMobileSidebarOpen = false"
@@ -239,7 +252,11 @@ const screenWidth = ref(window.innerWidth);
 // --- Menu Items (Sumber data tunggal untuk kedua sidebar) ---
 const menuItems = ref([
   { name: "Kalkulator BMI", path: "/dashboard/bmi", icon: "fas fa-calculator" },
-  { name: "Kalkulator Kalori", path: "/dashboard/kalori", icon: "fas fa-fire-alt" }, // <-- Ditambahkan
+  {
+    name: "Kalkulator Kalori",
+    path: "/dashboard/kalori",
+    icon: "fas fa-fire-alt",
+  }, // <-- Ditambahkan
   { name: "Latihan", path: "/dashboard/latihan", icon: "fas fa-dumbbell" },
   { name: "Makanan", path: "/dashboard/makanan", icon: "fas fa-utensils" },
   { name: "Favorit", path: "/dashboard/favorit", icon: "fas fa-heart" },
@@ -351,10 +368,10 @@ watch(screenWidth, (newWidth) => {
 }
 
 aside::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 aside {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>
